@@ -1,8 +1,9 @@
 package com.uninance.backend.entities;
 
-import java.time.LocalDateTime;
 import jakarta.persistence.*;
 import lombok.*;
+
+//Clase padre de los GIT
 
 @MappedSuperclass
 @Getter
@@ -15,15 +16,6 @@ public class GITEntity extends BaseEntity {
     @Column
     private String description; 
 
-    @Column
-    private LocalDateTime date; 
-
-    @PrePersist
-    public void onGitCreate() {
-        this.date = LocalDateTime.now();
-    }
-
-    
 }
 
 

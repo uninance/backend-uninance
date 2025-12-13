@@ -1,39 +1,35 @@
 package com.uninance.backend.entities;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
+import com.uninance.backend.enums.PeriodEnums;
 import com.uninance.backend.enums.NotificationType;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "notifications")
+@Table(name = "notification_settings")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class NotificationEntity extends BaseEntity {
+public class NotificationSettingEntity extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private NotificationType type;
 
-    @Column(nullable = false, length = 255)
-    private String message;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private PeriodEnums frequency;
 
     @Column(nullable = false)
-    private boolean read = false;
+    private boolean enabled = true;
 
-    @Column(nullable = false)
-    private LocalDateTime sentAt;
+    private LocalTime preferredTime;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity user;
-
-    @PrePersist
-    public void onCreate() {
-        this.sentAt = LocalDateTime.now();
-    }
 }

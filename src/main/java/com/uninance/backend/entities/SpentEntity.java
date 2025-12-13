@@ -3,6 +3,8 @@ package com.uninance.backend.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+//Clase encargada de manejar los gastos
+
 @Entity
 @Table(name = "spents")
 @Getter

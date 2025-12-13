@@ -1,10 +1,11 @@
 package com.uninance.backend.entities;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+//entidad encargada de manejar las categorias de la aplicacion
 
 @Entity
 @Table(name = "categories")
@@ -17,6 +18,7 @@ public class CategoryEntity extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
+    //Spent o Income, atributo para facilitar filtrado y clasificacion
     @Column(nullable = false)
     private String type;
 
@@ -24,8 +26,6 @@ public class CategoryEntity extends BaseEntity {
 
     @Column(nullable = false)
     private boolean userCreated;
-
-    private LocalDateTime creationDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -37,8 +37,11 @@ public class CategoryEntity extends BaseEntity {
     @OneToMany(mappedBy = "category")
     private List<SpentEntity> spents;
 
-    @PrePersist
-    public void onCreate() {
-        this.creationDate = LocalDateTime.now();
-    }
+    @OneToOne(mappedBy = "category", cascade = CascadeType.ALL)
+    private BudgetEntity budget;
+
+    @OneToMany(mappedBy = "category")
+    private List<RecurringEntity> recurrings;
+
+
 }

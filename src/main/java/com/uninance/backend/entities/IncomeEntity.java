@@ -3,6 +3,8 @@ package com.uninance.backend.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+//Clase encargada de manejar los ingresos del usuario
+
 @Entity
 @Table(name = "incomes")
 @Getter
