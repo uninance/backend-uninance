@@ -1,11 +1,11 @@
 package com.uninance.backend.entities;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.*;
 import lombok.*;
 
+//Clase encargada de manejar la entidad de usuario
 @Entity
 @Table(name = "users")
 @Getter
@@ -16,40 +16,64 @@ public class UserEntity extends BaseEntity {
 
     @Column(nullable = false)
     private String name;
-
+  
     @Column(nullable = false)
     private String lastName;
 
     @Column(nullable = false, unique = true)
     private String email;
-
+    
     @Column(nullable = false)
     private String password;
 
-    @Column
-    private Double savingGoal;
-
-    @Column(nullable = false)
-    private LocalDateTime registrationDate;
-
+    //atributo para manejar ganancias periodicas
     @Column
     private Double earnings;
 
+    //Configuraciones del usuario
     @Column
     private String preferences;
 
+    //metas de ahorro del usuario
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<GoalEntity> goals;
+
+    //Cuentas asociadas al usuario
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<AccountEntity> accounts;   
     
+    //categorias asociadas al usuario
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<CategoryEntity> categories; 
     
+    //GITS
+    //ganancias del usuario
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<IncomeEntity> incomes; 
 
+    //gastos del usuario
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<SpentEntity> spents; 
 
+    //transacciones del usuario
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<TransactionEntity> transactions; 
+
+    //Presupuestos creados por el usuario
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<BudgetEntity> budgets; 
+
+    //GITs recurrentes del usuario
+    @OneToMany(mappedBy = "user")
+    private List<RecurringEntity> recurrings;
+
+    //Notificaciones del usuario
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<NotificationEntity> notifications;
+
+    //Configuracion de notificaciones
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<NotificationSettingEntity> notificationSettings;
+
+
 }
