@@ -2,6 +2,8 @@ package com.uninance.backend.entities;
 
 import java.util.List;
 
+import com.uninance.backend.enums.RoleEnum;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,6 +21,13 @@ public class UserEntity extends BaseEntity {
   
     @Column(nullable = false)
     private String lastName;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private RoleEnum role;
+
+    @Column(nullable = false, unique = true)
+    private boolean active = true;
 
     @Column(nullable = false, unique = true)
     private String email;
