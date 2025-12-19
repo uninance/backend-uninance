@@ -26,6 +26,7 @@ public interface UserService {
 
     void activateUser(Long userId);
 
-    Double checkBalance(Long userId);
+    Double checkTotalBalance(Long userId);
+
 
 }
