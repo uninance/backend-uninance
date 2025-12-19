@@ -17,10 +17,12 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
+    //Register
     @Override
     public UserEntity createUser(UserEntity user) {
         return userRepository.save(user);
     }
+
 
     @Override
     public UserEntity findUserById(Long userId) {
@@ -98,7 +100,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Double checkBalance(Long userId) {
+    public Double checkTotalBalance(Long userId) {
         UserEntity user = findUserById(userId);
 
         double total = 0.0;
