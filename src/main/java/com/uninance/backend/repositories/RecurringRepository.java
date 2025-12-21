@@ -9,5 +9,9 @@ import com.uninance.backend.entities.RecurringEntity;
 
 public interface RecurringRepository extends JpaRepository<RecurringEntity, Long> {
 
-    List<RecurringEntity> findByActiveTrueAndNextExecutionBefore(LocalDateTime now);
+    List<RecurringEntity> findByUserId(Long userId);
+
+    List<RecurringEntity> findByActiveTrue();
+
+    List<RecurringEntity> findByActiveTrueAndNextExecutionBefore(LocalDateTime dateTime);
 }

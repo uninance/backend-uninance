@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.uninance.backend.entities.SpentEntity;
-import com.uninance.backend.entities.UserEntity;
 
 public interface SpentRepository extends JpaRepository<SpentEntity, Long> {
 
-    List<SpentEntity> findByUser(UserEntity user);
+    List<SpentEntity> findByUserId(Long userId);
+
+    List<SpentEntity> findByAccountId(Long accountId);
+
+    List<SpentEntity> findByCategoryId(Long categoryId);
 }

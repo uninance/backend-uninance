@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.uninance.backend.entities.IncomeEntity;
-import com.uninance.backend.entities.UserEntity;
 
 public interface IncomeRepository extends JpaRepository<IncomeEntity, Long> {
 
-    List<IncomeEntity> findByUser(UserEntity user);
+    List<IncomeEntity> findByUserId(Long userId);
+
+    List<IncomeEntity> findByAccountId(Long accountId);
+
+    List<IncomeEntity> findByCategoryId(Long categoryId);
 }
