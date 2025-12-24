@@ -14,6 +14,7 @@ import com.uninance.backend.repositories.SpentRepository;
 import com.uninance.backend.services.SpentService;
 import com.uninance.backend.services.UserService;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -26,6 +27,7 @@ public class SpentServiceImpl implements SpentService {
     private final CategoryRepository categoryRepository;
 
     @Override
+    @Transactional
     public SpentEntity createSpent(Long userId, Long accountId, Long categoryId, SpentEntity spent) {
 
         UserEntity user = userService.findUserById(userId);

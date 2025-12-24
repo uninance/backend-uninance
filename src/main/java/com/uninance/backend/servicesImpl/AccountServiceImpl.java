@@ -11,6 +11,7 @@ import com.uninance.backend.repositories.AccountRepository;
 import com.uninance.backend.services.AccountService;
 import com.uninance.backend.services.UserService;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -57,6 +58,7 @@ public class AccountServiceImpl implements AccountService{
 
 
     @Override
+    @Transactional
     public void updateBalance(Long accountId, Double amount){
         AccountEntity account = findAccount(accountId);
         if (account.getBalance() + amount < 0) {

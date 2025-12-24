@@ -12,6 +12,7 @@ import com.uninance.backend.services.BudgetService;
 import com.uninance.backend.services.CategoryService;
 import com.uninance.backend.services.UserService;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -23,6 +24,7 @@ public class BudgetServiceImpl implements BudgetService {
     private final CategoryService categoryService;
 
     @Override
+    @Transactional
     public BudgetEntity createBudget(Long userId, Long categoryId, BudgetEntity budget) {
 
         if (budgetRepository.existsByCategoryId(categoryId)) {

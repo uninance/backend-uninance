@@ -10,10 +10,12 @@ import com.uninance.backend.repositories.TransactionRepository;
 import com.uninance.backend.services.AccountService;
 import com.uninance.backend.services.TransactionService;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class TransactionServiceImpl implements TransactionService {
 
     private final TransactionRepository transactionRepository;

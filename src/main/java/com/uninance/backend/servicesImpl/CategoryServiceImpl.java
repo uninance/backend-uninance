@@ -67,4 +67,60 @@ public class CategoryServiceImpl implements CategoryService {
         }
         categoryRepository.deleteById(categoryId);
     }
+
+    @Override
+    public void createDefaultSpentCategories(Long userId) {
+        UserEntity user = userService.findUserById(userId);
+
+        List<CategoryEntity> defaults = List.of(
+            createSpentCategory("Food", "food", user),
+            createSpentCategory("Transport", "bus", user),
+            createSpentCategory("Health", "health", user),
+            createSpentCategory("Entertainment", "entertainment", user),
+            createSpentCategory("Emergency", "entertainment", user),
+            createSpentCategory("Dwelling", "dwelling", user),
+            createSpentCategory("Services", "services", user),
+            createSpentCategory("Education", "education", user)
+        );
+
+        categoryRepository.saveAll(defaults);
+    }
+
+    @Override
+    public CategoryEntity createSpentCategory(String name, String icon, UserEntity user) {
+        CategoryEntity category = new CategoryEntity();
+        category.setName(name);
+        category.setType("Spent");
+        category.setIcon(icon);
+        category.setUserCreated(false);
+        category.setUser(user);
+        return category;
+    }
+
+        @Override
+    public void createDefaultIncomeCategories(Long userId) {
+        UserEntity user = userService.findUserById(userId);
+
+        List<CategoryEntity> defaults = List.of(
+            createIncomeCategory("Salary", "salary", user),
+            createIncomeCategory("Sales", "sales", user),
+            createIncomeCategory("Extra Incomes", "health", user),
+            createIncomeCategory("Freelance", "entertainment", user),
+            createIncomeCategory("Bonus", "entertainment", user),
+            createIncomeCategory("Investing Returns", "ir", user)
+        );
+
+        categoryRepository.saveAll(defaults);
+    }
+
+    @Override
+    public CategoryEntity createIncomeCategory(String name, String icon, UserEntity user) {
+        CategoryEntity category = new CategoryEntity();
+        category.setName(name);
+        category.setType("Income");
+        category.setIcon(icon);
+        category.setUserCreated(false);
+        category.setUser(user);
+        return category;
+    }
 }

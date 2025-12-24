@@ -14,6 +14,7 @@ import com.uninance.backend.services.CategoryService;
 import com.uninance.backend.services.IncomeService;
 import com.uninance.backend.services.UserService;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -26,6 +27,7 @@ public class IncomeServiceImpl implements IncomeService {
     private final CategoryService categoryService;
 
     @Override
+    @Transactional
     public IncomeEntity createIncome(
             Long userId,
             Long accountId,
