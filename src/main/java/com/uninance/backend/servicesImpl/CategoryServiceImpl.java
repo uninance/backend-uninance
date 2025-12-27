@@ -69,8 +69,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void createDefaultSpentCategories(Long userId) {
-        UserEntity user = userService.findUserById(userId);
+    public void createDefaultSpentCategories(UserEntity user) {
 
         List<CategoryEntity> defaults = List.of(
             createSpentCategory("Food", "food", user),
@@ -98,8 +97,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
         @Override
-    public void createDefaultIncomeCategories(Long userId) {
-        UserEntity user = userService.findUserById(userId);
+    public void createDefaultIncomeCategories(UserEntity user) {
 
         List<CategoryEntity> defaults = List.of(
             createIncomeCategory("Salary", "salary", user),

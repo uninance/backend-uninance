@@ -2,6 +2,7 @@ package com.uninance.backend.services;
 
 import java.util.List;
 
+
 import com.uninance.backend.entities.CategoryEntity;
 import com.uninance.backend.entities.UserEntity;
 
@@ -19,11 +20,11 @@ public interface CategoryService {
 
     void deleteCategory(Long categoryId);
 
-    void createDefaultSpentCategories(Long userId);
+    void createDefaultSpentCategories(UserEntity user);
 
     CategoryEntity createSpentCategory(String name, String icon, UserEntity user);
 
-    void createDefaultIncomeCategories(Long userId);
+    void createDefaultIncomeCategories(UserEntity user);
 
     CategoryEntity createIncomeCategory(String name, String icon, UserEntity user);
 }
